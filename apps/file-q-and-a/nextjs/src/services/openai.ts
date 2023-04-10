@@ -15,8 +15,11 @@ if (!process.env.OPENAI_API_KEY) {
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
+  basePath: "https://sccentral-oai-cookbook.openai.azure.com",
 });
 export const openai = new OpenAIApi(configuration);
+
+
 
 type CompletionOptions = Partial<CreateCompletionRequest> & {
   prompt: string;
@@ -66,7 +69,7 @@ export async function* completionStream({
   fallback,
   max_tokens = 800,
   temperature = 0,
-  model = "gpt-3.5-turbo", // use gpt-4 for better results
+  model = "gpt-35-turbo", // use gpt-4 for better results
 }: CompletionOptions) {
   try {
     // Note: this is not the proper way to use the ChatGPT conversational format, but it works for now
